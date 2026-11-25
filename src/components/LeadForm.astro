@@ -1,0 +1,29 @@
+---
+interface Props { kind: string; buttonLabel?: string; }
+const { kind, buttonLabel = 'Send request' } = Astro.props;
+---
+<form class="lead-form" data-lead-form data-kind={kind} novalidate>
+  <div class="form-state" role="status" data-form-state>Checking request availability. This preview does not send requests until the commercial channel is configured.</div>
+  <fieldset disabled data-form-fields><legend class="sr-only">Your business inquiry</legend>
+    <div class="form-grid">
+      <div class="form-field"><label for={`${kind}-name`}>Full name *</label><input id={`${kind}-name`} name="name" autocomplete="name" maxlength="100" required /></div>
+      <div class="form-field"><label for={`${kind}-email`}>Work email *</label><input id={`${kind}-email`} name="email" type="email" autocomplete="email" maxlength="254" required /></div>
+      <div class="form-field"><label for={`${kind}-organization`}>Organization *</label><input id={`${kind}-organization`} name="organization" autocomplete="organization" maxlength="160" required /></div>
+      <div class="form-field"><label for={`${kind}-role`}>Your role *</label><input id={`${kind}-role`} name="role" autocomplete="organization-title" maxlength="100" required /></div>
+      <div class="form-field"><label for={`${kind}-country`}>Country / region *</label><input id={`${kind}-country`} name="country" autocomplete="country-name" maxlength="80" required /></div>
+      <div class="form-field"><label for={`${kind}-segment`}>Organization type *</label><select id={`${kind}-segment`} name="segment" required><option value="">Select organization type</option><option>Training provider</option><option>Certification body</option><option>Corporate academy</option><option>Education institution</option><option>Technology partner</option><option>Other</option></select></div>
+      <div class="form-field"><label for={`${kind}-volume`}>Expected assessments / year</label><select id={`${kind}-volume`} name="volume"><option value="">Select an estimate</option><option>Under 1,000</option><option>1,000–5,000</option><option>5,000–20,000</option><option>Over 20,000</option><option>Not yet known</option></select></div>
+      <div class="form-field"><label for={`${kind}-deployment`}>Deployment preference *</label><select id={`${kind}-deployment`} name="deployment" required><option value="">Select a preference</option><option>Customer infrastructure</option><option>Need technical guidance</option><option>Exploring options</option></select></div>
+      <div class="form-field"><label for={`${kind}-timeline`}>Project timing</label><select id={`${kind}-timeline`} name="timeline"><option value="">Select timing</option><option>Within 3 months</option><option>3–6 months</option><option>6–12 months</option><option>Research stage</option></select></div>
+      {kind === 'partner' && <div class="form-field"><label for="partner-type">Partnership interest *</label><select id="partner-type" name="partnerType" required><option value="">Select interest</option><option>Referral</option><option>Implementation</option><option>Reseller</option><option>Technology</option></select></div>}
+      <div class="form-field full"><label for={`${kind}-message`}>{kind === 'partner' ? 'Markets served and partnership idea' : 'What would you like to improve?'} *</label><textarea id={`${kind}-message`} name="message" maxlength="2000" required placeholder="Describe your examination workflow and requirements. Please do not include candidate data or confidential records."></textarea></div>
+    </div>
+    <div class="hp-field" aria-hidden="true"><label for={`${kind}-website`}>Leave this field empty</label><input id={`${kind}-website`} name="website" tabindex="-1" autocomplete="off" /></div>
+    <label class="consent-label"><input type="checkbox" name="consent" required /><span>I have read the <a href="/privacy/">privacy notice</a> and agree to be contacted about this inquiry. *</span></label>
+    <button type="submit" class="button button-dark">{buttonLabel}</button>
+    <p class="form-bottom-note">No marketing subscription is created. A meeting is confirmed separately.</p>
+  </fieldset><p class="form-result" aria-live="polite" data-form-result></p>
+  <noscript><p>JavaScript is required for the protected inquiry form. Request delivery is not enabled in this local preview.</p></noscript>
+</form>
+<script is:inline src="/scripts/forms.js" defer></script>
+<style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>

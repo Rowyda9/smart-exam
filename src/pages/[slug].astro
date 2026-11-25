@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import Workspace from '../components/Workspace.astro';
+import Architecture from '../components/Architecture.astro';
+import CTA from '../components/CTA.astro';
+import { productPages, pageTitles } from '../data/site';
+export function getStaticPaths() { return productPages.map(page => ({ params: { slug: page.slug }, props: { page } })); }
+const { page } = Astro.props;
+---
+<Base title={page.eyebrow} description={page.description}>
+  <section class="page-hero"><div class="container"><div class="breadcrumb"><a href="/">Home</a><span>/</span><span>{page.eyebrow}</span></div><div class="page-hero-grid"><div><span class="eyebrow">{page.eyebrow}</span><h1>{page.title}</h1><p class="intro">{page.description}</p><div class="button-row"><a class="button button-dark" href="/request-demo/" data-conversion="feature_demo">{page.purpose}</a></div></div><div class="page-visual">{page.visual === 'architecture' ? <Architecture /> : <Workspace variant={page.visual} />}<p>{page.visual === 'architecture' ? 'Conceptual deployment model. Exact scope is agreed during discovery.' : 'Synthetic explanatory interface. Not a live product capture.'}</p></div></div></div></section>
+  <section class="section-space"><div class="container detail-grid"><nav class="detail-nav" aria-label="On this page"><strong>On this page</strong>{page.sections.map((section, i) => <a href={`#detail-${i}`}>{section.title}</a>)}<a href="#scope">Scope & deployment</a></nav><div>{page.sections.map((section, i) => <article class="detail-section" id={`detail-${i}`}><h2>{section.title}</h2><p>{section.body}</p>{section.items && <ul class="check-list">{section.items.map(item => <li>{item}</li>)}</ul>}</article>)}<aside class="scope-note" id="scope"><strong>Plan the scope. </strong>{page.note}</aside><h3>Continue exploring</h3><div class="related-links">{page.related.map(slug => <a href={`/${slug}/`}>{pageTitles[slug] || slug}</a>)}</div></div></div></section><CTA title="Make it specific to your organization." />
+</Base>

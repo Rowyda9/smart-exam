@@ -1,0 +1,30 @@
+---
+const { variant = 'operations', compact = false } = Astro.props;
+---
+<div class:list={['workspace', { compact }]} data-workspace>
+  <div class="workspace-chrome"><span class="mini-mark">se.</span><span>Assessment workspace</span><span class="synthetic-tag">Illustrative data</span></div>
+  <div class="workspace-shell">
+    <aside class="workspace-sidebar" aria-hidden="true"><span class="workspace-org">N</span><span class="side-icon active">▦</span><span class="side-icon">▤</span><span class="side-icon">◇</span><span class="side-icon">◷</span><span class="sidebar-bottom">?</span></aside>
+    <div class="workspace-content">
+      <div class="workspace-heading"><div><span class="micro">YOUR ORGANIZATION</span><h3>{variant === 'departments' ? 'Department overview' : variant === 'evidence' ? 'Session review' : 'Examination overview'}</h3></div><span class="workspace-avatar">AD</span></div>
+      {variant === 'departments' ? <>
+        <div class="scope-banner"><span class="scope-icon">◇</span><div><strong>Defined responsibilities</strong><small>Department scope with central oversight</small></div></div>
+        <div class="department-row"><span class="dept-icon blue">L</span><div><strong>Learning & development</strong><small>Exams, question banks, candidate cohorts</small></div><span class="tag">Scoped</span></div>
+        <div class="department-row"><span class="dept-icon lime">T</span><div><strong>Technical training</strong><small>Exams, question banks, candidate cohorts</small></div><span class="tag">Scoped</span></div>
+        <div class="department-row"><span class="dept-icon lavender">C</span><div><strong>Compliance programs</strong><small>Exams, question banks, candidate cohorts</small></div><span class="tag">Scoped</span></div>
+        <div class="workspace-caption">Shared application. Role and resource access controls.</div>
+      </> : variant === 'evidence' ? <>
+        <div class="review-layout"><div class="video-illustration"><svg width="92" height="110" viewBox="0 0 92 110" aria-hidden="true"><circle cx="46" cy="32" r="22" fill="#94a7b8"/><path d="M7 110v-17c0-26 78-26 78 0v17" fill="#94a7b8"/></svg><span>Webcam evidence illustration</span></div><div class="review-info"><span class="tag">Human review</span><h4>Technical knowledge</h4><p>Candidate DEMO-014</p><p>Captured session context</p></div></div>
+        <div class="timeline"><span class="timeline-title">Session events</span><div><span class="time">09:04</span><span>Session started</span><i class="event-dot"></i></div><div><span class="time">09:18</span><span>Focus changed · review context</span><i class="event-dot amber"></i></div><div><span class="time">09:41</span><span>Examination submitted</span><i class="event-dot"></i></div></div>
+        <div class="workspace-caption">Advisory signals support a human decision.</div>
+      </> : <>
+        <div class="workspace-stats"><div><span>Planned exams</span><strong>08<small>this scenario</small></strong></div><div><span>Departments</span><strong>03<small>with defined scope</small></strong></div><div><span>Next session</span><strong>09:00<small>demo schedule</small></strong></div></div>
+        <div class="workspace-table-head"><strong>Examination programs</strong><span>All departments</span></div>
+        <div class="exam-row"><span class="exam-symbol blue">▤</span><div><strong>Technical knowledge</strong><small>Technical training</small></div><span class="tag">Scheduled</span></div>
+        <div class="exam-row"><span class="exam-symbol lime">▤</span><div><strong>Professional practice</strong><small>Learning & development</small></div><span class="tag muted">In preparation</span></div>
+        <div class="exam-row"><span class="exam-symbol lavender">▤</span><div><strong>Policy essentials</strong><small>Compliance programs</small></div><span class="tag">Review</span></div>
+        <div class="workspace-caption"><span class="tiny-check">✓</span> Prepare. Deliver. Review. Publish.</div>
+      </>}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro'; import CTA from '../../components/CTA.astro'; import { articles } from '../../data/articles';
+export function getStaticPaths() { return articles.map(article=>({params:{article:article.slug},props:{article}})); }
+const { article }=Astro.props;
+---
+<Base title={article.title} description={article.description}><section class="page-hero"><div class="container page-title-only"><div class="breadcrumb"><a href="/resources/">Resources</a><span>/</span><span>{article.category}</span></div><span class="eyebrow">{article.category}</span><h1>{article.title}</h1><p class="intro">{article.description}</p></div></section><section class="section-space"><article class="container article-body"><p>{article.intro}</p>{article.sections.map(s=><section><h2>{s.title}</h2><p>{s.body}</p><ul>{s.items.map(item=><li>{item}</li>)}</ul></section>)}<aside class="article-callout"><p>{article.takeaway}</p></aside><p>Use this guide to prepare for <a href="/request-demo/">a tailored workflow and deployment discussion</a>. Specific product, security and contractual requirements are assessed against the proposed deployment.</p><p><a href="/resources/">Explore all resources</a></p></article></section><CTA /></Base>

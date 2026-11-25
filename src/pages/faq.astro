@@ -1,0 +1,4 @@
+---
+import Base from '../layouts/Base.astro'; import CTA from '../components/CTA.astro'; import { faqs } from '../data/site';
+---
+<Base title="Frequently asked questions" description="Answers about Smart Exam customer-hosted deployment, department scope, proctoring, recording, language support and enterprise licensing."><section class="page-hero"><div class="container page-title-only"><span class="eyebrow">Frequently asked questions</span><h1>Get clear on the details.</h1><p class="intro">Start here, then explore the requirements specific to your organization.</p></div></section><section class="section-space"><div class="container"><div class="faq-list">{faqs.map(([question, answer])=><details><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section><CTA title="Bring your questions to a tailored demo." /></Base>

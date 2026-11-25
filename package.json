@@ -1,0 +1,26 @@
+{
+  "name": "smart-exam-commercial",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "node scripts/run-astro.mjs dev --host 127.0.0.1",
+    "build": "node scripts/run-astro.mjs build",
+    "check": "node scripts/run-astro.mjs check",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "node scripts/verify-build.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "5.3.0",
+    "astro": "7.4.13"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "axe-core": "4.14.1",
+    "typescript": "6.0.3"
+  }
+}
